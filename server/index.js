@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -67,18 +68,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Serve static files from the React app build directory in production
+// Serve static files from React app in production
 if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
   app.use(express.static(path.join(__dirname, '../client/build')));
   
-  // Catch all handler: send back React's index.html file for any non-API routes
+  // Handle React routing, return all requests to React app
   app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api/')) {
-      res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-    } else {
-      res.status(404).json({ error: 'API route not found' });
-    }
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 } else {
   // 404 handler for development
