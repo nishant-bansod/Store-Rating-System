@@ -88,15 +88,24 @@ if (process.env.NODE_ENV === 'production') {
 // Initialize database and start server
 async function startServer() {
   try {
+    console.log('🚀 Starting server...');
+    console.log('📊 Environment:', process.env.NODE_ENV || 'development');
+    console.log('🔑 JWT_SECRET:', process.env.JWT_SECRET ? 'SET' : 'NOT SET');
+    console.log('🗄️ DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'NOT SET');
+    
     // Auto-initialize database tables if needed
+    console.log('🔍 Initializing database...');
     await autoInitializeDatabase(pool);
     
     // Start the server
+    console.log(`🌐 Starting server on port ${PORT}...`);
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`✅ Server running on port ${PORT}`);
+      console.log(`🚀 Application ready!`);
     });
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('❌ Failed to start server:', error);
+    console.error('Stack trace:', error.stack);
     process.exit(1);
   }
 }
