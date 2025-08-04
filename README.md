@@ -226,10 +226,6 @@ JWT_SECRET=your_strong_jwt_secret
 
 This project is licensed under the MIT License.
 
-## 📧 **Contact**
-
-For any queries or support, please contact the development team.
-
 ---
 
 **Built with ❤️ using React.js, Node.js, and MySQL**
