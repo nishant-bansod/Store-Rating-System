@@ -11,7 +11,7 @@ const Stores = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
-  const [selectedRating, setSelectedRating] = useState(null);
+  const [selectedRatings, setSelectedRatings] = useState({});
   const [ratingLoading, setRatingLoading] = useState({});
 
   // Debounce search term to prevent API calls on every character
@@ -44,6 +44,8 @@ const Stores = () => {
       setRatingLoading(prev => ({ ...prev, [storeId]: true }));
       await axios.post(`/api/ratings/${storeId}`, { rating });
       toast.success('Rating submitted successfully!');
+      // Clear the selected rating for this store
+      setSelectedRatings(prev => ({ ...prev, [storeId]: null }));
       fetchStores(); // Refresh to get updated data
     } catch (error) {
       toast.error('Failed to submit rating');
@@ -58,6 +60,8 @@ const Stores = () => {
       setRatingLoading(prev => ({ ...prev, [storeId]: true }));
       await axios.delete(`/api/ratings/${storeId}`);
       toast.success('Rating removed successfully!');
+      // Clear the selected rating for this store
+      setSelectedRatings(prev => ({ ...prev, [storeId]: null }));
       fetchStores(); // Refresh to get updated data
     } catch (error) {
       toast.error('Failed to remove rating');
@@ -208,8 +212,8 @@ const Stores = () => {
                 <div>
                   <span className="text-sm font-medium text-gray-700">Rate this store</span>
                   <div className="mt-2">
-                    {renderStars(selectedRating || 0, true, (rating) => {
-                      setSelectedRating(rating);
+                    {renderStars(selectedRatings[store.id] || 0, true, (rating) => {
+                      setSelectedRatings(prev => ({ ...prev, [store.id]: rating }));
                       handleRatingSubmit(store.id, rating);
                     })}
                   </div>
