@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { 
   Store, 
@@ -10,7 +10,6 @@ import {
   TrendingUp,
   Edit,
   X,
-  Plus,
   Building2
 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -30,11 +29,7 @@ const StoreOwnerDashboard = () => {
   const [editFormErrors, setEditFormErrors] = useState({});
   const [editLoading, setEditLoading] = useState(false);
 
-  useEffect(() => {
-    fetchStoresData();
-  }, []);
-
-  const fetchStoresData = async () => {
+  const fetchStoresData = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -59,7 +54,11 @@ const StoreOwnerDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchStoresData();
+  }, [fetchStoresData]);
 
   const fetchStoreRatings = async (storeId) => {
     try {

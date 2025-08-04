@@ -97,7 +97,7 @@ const AdminStores = () => {
     }
 
     try {
-      const response = await axios.post('/api/admin/stores', formData);
+      await axios.post('/api/admin/stores', formData);
       
       toast.success('Store created successfully!');
       setShowAddModal(false);
