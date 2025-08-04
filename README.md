@@ -194,23 +194,37 @@ A comprehensive full-stack web application for rating and managing stores with r
 - SQL injection prevention
 - XSS protection headers
 
-## 🚀 **Deployment**
+## 🚀 **Local Development & Deployment**
+
+### **Quick Start**
+```bash
+# Install dependencies
+npm run install-all
+
+# Setup database
+npm run setup
+
+# Start development server
+npm run dev
+```
 
 ### **Production Build**
 ```bash
-# Build frontend
-cd client
+# Build frontend for production
 npm run build
 
-# The build folder will be ready for deployment
+# Start production server
+npm run server
 ```
 
-### **Environment Variables for Production**
+### **Environment Variables**
+Create a `.env` file in the root directory:
 ```env
-NODE_ENV=production
-DB_HOST=your_production_db_host
-DB_USER=your_production_db_user
-DB_PASSWORD=your_production_db_password
+NODE_ENV=development
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=store_rating_system
 JWT_SECRET=your_strong_jwt_secret
 ```
 
@@ -225,10 +239,6 @@ JWT_SECRET=your_strong_jwt_secret
 ## 📝 **License**
 
 This project is licensed under the MIT License.
-
-## 📧 **Contact**
-
-For any queries or support, please contact the development team.
 
 ---
 
