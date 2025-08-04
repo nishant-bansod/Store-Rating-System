@@ -2,6 +2,42 @@
 
 A comprehensive full-stack web application for rating and managing stores with role-based access control.
 
+## 📱 **Screenshots**
+
+### **Login Page**
+![Login Page](<img width="1918" height="977" alt="Login Page" src="https://github.com/user-attachments/assets/524c80d1-bfb1-4a4c-a06f-298a85efc02e" />
+)
+*Modern authentication interface with role-based access control*
+
+### **Admin Dashboard**
+![Admin Dashboard](<img width="1918" height="953" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/f70e0abe-0246-4fa1-b626-6b2342ad9ab9" />
+)
+*System overview with statistics and quick action buttons*
+
+### **Admin Manage Users**
+![Admin Manage Users](<img width="1890" height="866" alt="Admin Manage User Section" src="https://github.com/user-attachments/assets/f2fc6466-0ab8-47cb-8442-8c70872e1474" />
+)
+*User management with search, filter, and CRUD operations*
+
+### **Admin Manage Stores**
+![Admin Manage Stores](<img width="1907" height="965" alt="Admin Manage Store Section" src="https://github.com/user-attachments/assets/02962beb-cac3-49ef-8693-0f826f493b43" />
+)
+*Store management panel with ratings and owner assignments*
+
+### **Store Owner Dashboard**
+![Store Owner Dashboard](<img width="1885" height="861" alt="Store Dashboard" src="https://github.com/user-attachments/assets/074c8511-047e-4ee2-9cf3-1757c3062bc2" />
+)
+*Multi-store analytics with rating insights and performance metrics*
+
+### **User Dashboard**
+![User Dashboard](<img width="1916" height="968" alt="Normal User Dashboard" src="https://github.com/user-attachments/assets/7a0fdaf8-7728-435e-ba55-32856fb3e41d" />
+)
+*Store browsing with interactive ratings and search functionality*
+
+---
+
+**Features:** Role-based access, real-time ratings, search/filter, responsive design, modern UI/UX
+
 ## 🌟 Features
 
 ### 👤 **User Roles**
