@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
   Store, 
@@ -10,6 +10,7 @@ import {
   TrendingUp,
   Edit,
   X,
+  Plus,
   Building2
 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -29,7 +30,11 @@ const StoreOwnerDashboard = () => {
   const [editFormErrors, setEditFormErrors] = useState({});
   const [editLoading, setEditLoading] = useState(false);
 
-  const fetchStoresData = useCallback(async () => {
+  useEffect(() => {
+    fetchStoresData();
+  }, []);
+
+  const fetchStoresData = async () => {
     try {
       setLoading(true);
       
@@ -54,11 +59,7 @@ const StoreOwnerDashboard = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
-
-  useEffect(() => {
-    fetchStoresData();
-  }, [fetchStoresData]);
+  };
 
   const fetchStoreRatings = async (storeId) => {
     try {
@@ -380,9 +381,9 @@ const StoreOwnerDashboard = () => {
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Customer Satisfaction</span>
                     <span className="font-medium text-green-600">
-                      {selectedStore?.average_rating && selectedStore.average_rating >= 4 ? 'Excellent' : 
-                       selectedStore?.average_rating && selectedStore.average_rating >= 3 ? 'Good' : 
-                       selectedStore?.average_rating && selectedStore.average_rating >= 2 ? 'Fair' : 'Poor'}
+                      {selectedStore?.average_rating && parseFloat(selectedStore.average_rating) >= 4 ? 'Excellent' : 
+                       selectedStore?.average_rating && parseFloat(selectedStore.average_rating) >= 3 ? 'Good' : 
+                       selectedStore?.average_rating && parseFloat(selectedStore.average_rating) >= 2 ? 'Fair' : 'Poor'}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">

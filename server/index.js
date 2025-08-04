@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const path = require('path');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -10,8 +9,6 @@ const userRoutes = require('./routes/users');
 const storeRoutes = require('./routes/stores');
 const ratingRoutes = require('./routes/ratings');
 const adminRoutes = require('./routes/admin');
-const autoInitializeDatabase = require('./config/auto-init-db');
-const pool = require('./config/database');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -70,46 +67,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Serve static files from React app in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
-} else {
-  // 404 handler for development
-  app.use('*', (req, res) => {
-    res.status(404).json({ error: 'Route not found' });
-  });
-}
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
-// Initialize database and start server
-async function startServer() {
-  try {
-    console.log('🚀 Starting server...');
-    console.log('📊 Environment:', process.env.NODE_ENV || 'development');
-    console.log('🔑 JWT_SECRET:', process.env.JWT_SECRET ? 'SET' : 'NOT SET');
-    console.log('🗄️ DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'NOT SET');
-    
-    // Auto-initialize database tables if needed
-    console.log('🔍 Initializing database...');
-    await autoInitializeDatabase(pool);
-    
-    // Start the server
-    console.log(`🌐 Starting server on port ${PORT}...`);
-    app.listen(PORT, () => {
-      console.log(`✅ Server running on port ${PORT}`);
-      console.log(`🚀 Application ready!`);
-    });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    console.error('Stack trace:', error.stack);
-    process.exit(1);
-  }
-}
-
-startServer();
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 module.exports = app; 

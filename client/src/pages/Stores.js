@@ -177,22 +177,22 @@ const Stores = () => {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">Overall Rating</span>
                   <span className="text-sm text-gray-600">
-                    {store.average_rating && typeof store.average_rating === 'number' ? store.average_rating.toFixed(1) : '0.0'}/5
+                    {store.average_rating ? parseFloat(store.average_rating).toFixed(1) : '0.0'}/5
                   </span>
                 </div>
                 <div className="flex items-center space-x-2 mb-3">
-                  {renderStars(store.average_rating && typeof store.average_rating === 'number' ? Math.round(store.average_rating) : 0)}
+                  {renderStars(store.average_rating ? Math.round(parseFloat(store.average_rating)) : 0)}
                                       <span className="text-sm text-gray-500">
                       ({store.total_ratings || 0} rating{(store.total_ratings || 0) !== 1 ? 's' : ''})
                     </span>
                 </div>
 
                 {/* User's Rating */}
-                {store.user_rating && store.user_rating > 0 && (
+                {store.user_rating && parseFloat(store.user_rating) > 0 && (
                   <div className="mb-3">
                     <span className="text-sm font-medium text-gray-700">Your Rating</span>
                     <div className="flex items-center space-x-2 mt-1">
-                      {renderStars(store.user_rating && typeof store.user_rating === 'number' ? store.user_rating : 0)}
+                      {renderStars(store.user_rating ? parseFloat(store.user_rating) : 0)}
                       <button
                         onClick={() => handleRatingDelete(store.id)}
                         disabled={ratingLoading[store.id]}

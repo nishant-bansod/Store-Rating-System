@@ -17,7 +17,10 @@ router.get('/', authenticateToken, requireUser, async (req, res) => {
         s.email,
         s.address,
         s.created_at,
-        COALESCE(AVG(r.rating), 0) as average_rating,
+        CAST(CASE 
+          WHEN COUNT(r.id) > 0 THEN ROUND(AVG(r.rating), 2)
+          ELSE 0
+        END AS DECIMAL(3,2)) as average_rating,
         COUNT(r.id) as total_ratings,
         ur.rating as user_rating
       FROM stores s
@@ -75,10 +78,10 @@ router.get('/my-store', authenticateToken, requireUser, async (req, res) => {
         s.email,
         s.address,
         s.created_at,
-        CASE 
+        CAST(CASE 
           WHEN COUNT(r.id) > 0 THEN ROUND(AVG(r.rating), 2)
           ELSE 0
-        END as average_rating,
+        END AS DECIMAL(3,2)) as average_rating,
         COUNT(r.id) as total_ratings
       FROM stores s
       LEFT JOIN ratings r ON s.id = r.store_id
@@ -113,7 +116,10 @@ router.get('/:id', authenticateToken, requireUser, async (req, res) => {
         s.email,
         s.address,
         s.created_at,
-        COALESCE(AVG(r.rating), 0) as average_rating,
+        CAST(CASE 
+          WHEN COUNT(r.id) > 0 THEN ROUND(AVG(r.rating), 2)
+          ELSE 0
+        END AS DECIMAL(3,2)) as average_rating,
         COUNT(r.id) as total_ratings,
         ur.rating as user_rating
       FROM stores s
@@ -149,7 +155,10 @@ router.get('/search', authenticateToken, requireUser, async (req, res) => {
         s.email,
         s.address,
         s.created_at,
-        COALESCE(AVG(r.rating), 0) as average_rating,
+        CAST(CASE 
+          WHEN COUNT(r.id) > 0 THEN ROUND(AVG(r.rating), 2)
+          ELSE 0
+        END AS DECIMAL(3,2)) as average_rating,
         COUNT(r.id) as total_ratings,
         ur.rating as user_rating
       FROM stores s

@@ -122,42 +122,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* System Information */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">System Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Platform Overview</h3>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Total Users:</span>
-                <span className="font-medium">{stats?.totalUsers || 0}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Total Stores:</span>
-                <span className="font-medium">{stats?.totalStores || 0}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Total Ratings:</span>
-                <span className="font-medium">{stats?.totalRatings || 0}</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Recent Activity</h3>
-            <div className="space-y-2">
-              <div className="flex items-center text-sm">
-                <Activity className="h-4 w-4 text-green-500 mr-2" />
-                <span className="text-gray-600">System running normally</span>
-              </div>
-              <div className="flex items-center text-sm">
-                <TrendingUp className="h-4 w-4 text-blue-500 mr-2" />
-                <span className="text-gray-600">Platform active</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* Admin Features */}
       <div className="bg-white rounded-lg shadow-sm p-6">

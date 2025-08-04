@@ -97,7 +97,7 @@ const AdminStores = () => {
     }
 
     try {
-      await axios.post('/api/admin/stores', formData);
+      const response = await axios.post('/api/admin/stores', formData);
       
       toast.success('Store created successfully!');
       setShowAddModal(false);
@@ -316,7 +316,7 @@ const AdminStores = () => {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">Average Rating</span>
                   <span className="text-sm text-gray-600">
-                    {store.average_rating && typeof store.average_rating === 'number' ? store.average_rating.toFixed(1) : '0.0'}/5
+                    {store.average_rating ? parseFloat(store.average_rating).toFixed(1) : '0.0'}/5
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -325,7 +325,7 @@ const AdminStores = () => {
                       <Star
                         key={star}
                         className={`h-4 w-4 ${
-                          star <= Math.round(store.average_rating)
+                          star <= Math.round(parseFloat(store.average_rating) || 0)
                             ? 'text-yellow-400 fill-current'
                             : 'text-gray-300'
                         }`}
