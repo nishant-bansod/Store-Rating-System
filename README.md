@@ -10,7 +10,7 @@ A comprehensive full-stack web application for rating and managing stores with r
 
 ### **Register Page**
 <img width="1910" height="965" alt="image" src="https://github.com/user-attachments/assets/8e03dcc0-eb0c-4e39-805e-9f1190bd4e87" />
-*Modern registration interface with user role selection and validation*
+Modern registration interface with user role selection and validation
 
 ### **Admin Dashboard**
 ![Admin Dashboard](https://github.com/user-attachments/assets/f70e0abe-0246-4fa1-b626-6b2342ad9ab9)
