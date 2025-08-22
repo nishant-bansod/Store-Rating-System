@@ -260,5 +260,3 @@ JWT_SECRET=your_strong_jwt_secret
 ```
 
 ---
-
-**Built with ❤️ using React.js, Node.js, and MySQL**
